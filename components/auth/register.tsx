@@ -57,8 +57,17 @@ const Register = () => {
     createAccount()
   }
 
+  const socialLogin = () => {
+    account.createOAuth2Session(
+      "google",
+      "http://localhost:3000/auth/callback",
+      "http://localhost:3000"
+    )
+  }
+
   return (
     <div className="max-w-xs">
+      <Button onClick={socialLogin}>Google</Button>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

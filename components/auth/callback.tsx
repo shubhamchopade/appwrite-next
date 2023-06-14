@@ -8,20 +8,23 @@ import { account } from "@/lib/appwrite"
 const Callback = () => {
   const router = useRouter()
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const userId = urlParams.get("userId")
-    const secret = urlParams.get("secret")
+    try {
+      const ac = async () => {
+        // First, start the session.
+        const uAccount = await account.get()
+        console.log(uAccount)
 
-    if (userId && secret) {
-      account
-        .updateVerification(userId, secret)
-        .then(() => {
-          console.log("Verification success")
-          router.push("/")
-        })
-        .catch((e) => {
-          console.log(e)
-        })
+        // Then, you can get the JWT
+        const jwt = await account.createJWT()
+
+        console.log(jwt)
+      }
+
+      ac()
+    } catch (e) {
+      console.log(e)
+      // Error 401 it's okay. it means the user is not logged in
+      // handle errors
     }
   }, [])
 
