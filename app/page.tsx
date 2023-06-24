@@ -1,16 +1,15 @@
-import Link from "next/link"
-
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
-import Login from "@/components/auth/login"
-import Register from "@/components/auth/register"
 import Grid from "@/components/grid"
+import Landing from "@/components/landing"
 
-export default function IndexPage() {
+import { getAccount } from "./page-data"
+
+export default async function IndexPage() {
+  const account = await getAccount()
+  console.log({ account })
+
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-      <Login />
-      <Register />
+      <Landing />
       <Grid />
     </section>
   )

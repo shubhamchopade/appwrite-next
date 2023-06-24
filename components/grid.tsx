@@ -1,6 +1,8 @@
 "use client"
 
-import React from "react"
+import React, { useEffect } from "react"
+
+import { account } from "@/lib/appwrite"
 
 import { Button } from "./ui/button"
 
@@ -37,7 +39,7 @@ const Grid = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-6 gap-4 transition-all">
+      {/* <div className="grid grid-cols-6 gap-4 transition-all">
         {blocks.map((block) => (
           <div
             key={block.name}
@@ -85,7 +87,7 @@ const Grid = () => {
             </Button>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

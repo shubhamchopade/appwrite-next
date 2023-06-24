@@ -8,6 +8,7 @@ import * as z from "zod"
 
 import { account } from "@/lib/appwrite"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Form,
   FormControl,
@@ -16,8 +17,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/form"
 
 const formSchema = z.object({
   email: z.string().email(),

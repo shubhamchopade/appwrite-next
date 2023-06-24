@@ -8,6 +8,7 @@ import * as z from "zod"
 
 import { account } from "@/lib/appwrite"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Form,
   FormControl,
@@ -16,8 +17,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/form"
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -57,17 +57,8 @@ const Register = () => {
     createAccount()
   }
 
-  const socialLogin = () => {
-    account.createOAuth2Session(
-      "google",
-      "http://localhost:3000/auth/callback",
-      "http://localhost:3000"
-    )
-  }
-
   return (
     <div className="max-w-xs">
-      <Button onClick={socialLogin}>Google</Button>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

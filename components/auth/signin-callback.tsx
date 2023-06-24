@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { account, db } from "@/lib/appwrite"
 import { id } from "@/lib/constants"
 
-const Callback = () => {
+const SignInCallback = () => {
   const router = useRouter()
   useEffect(() => {
     try {
@@ -15,30 +15,6 @@ const Callback = () => {
         const uAccount = await account.get()
         console.log(uAccount)
 
-        const username = window.location.href
-          .split("?")[1]
-          .split("&")[0]
-          .split("=")[1]
-
-        const prefs = account.updatePrefs({
-          username,
-        })
-
-        try {
-          const promise = db.createDocument(
-            id.database.dc,
-            id.collection.user,
-            uAccount.$id,
-            {
-              name: uAccount.name,
-              username,
-            }
-          )
-        } catch (e) {
-          console.log(e)
-        }
-
-        // Then, you can get the JWT
         const jwt = await account
           .createJWT()
           .then((res) => router.push("/"))
@@ -53,7 +29,7 @@ const Callback = () => {
     }
   }, [])
 
-  return <div>Callback</div>
+  return <div>Signin Callback</div>
 }
 
-export default Callback
+export default SignInCallback
